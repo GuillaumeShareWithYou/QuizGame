@@ -1,0 +1,31 @@
+<div class="row p-5">
+  <div class="col-md-8 offset-md-2">
+    <form (ngSubmit)="onSubmit(loginForm)" [formGroup]="loginForm">
+      <div class="form-group">
+        <label for="username">Adresse E-mail</label>
+        <input
+          formControlName="email"
+          type="email"
+          class="form-control"
+          id="username">
+      </div>
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input
+          formControlName="password"
+          type="password"
+          id="password"
+          class="form-control">
+      </div>
+      <div>
+        <button [disabled]="!loginForm.valid" type="submit" class="btn btn-primary">Se connecter</button>
+      </div>
+      <p>
+        pas encore de compte ?
+        <button class="btn btn-success" routerLink="/register">Inscrivez vous!</button>
+        C'est gratuit
+      </p>
+    </form>
+    <p>Form value: {{loginForm.value | json}}</p>
+  </div>
+</div>

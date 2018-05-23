@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+.ng-valid[required]  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid.ng-touched:not(form), .border-red  {
+  border-left: 5px solid #a94442; /* red */
+}
+
+input:focus{
+  border-left: 5px solid #bfdaef!important;
+}
