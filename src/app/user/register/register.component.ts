@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
     const passwordCtrl = new FormControl('el585',
       [
         Validators.required,
-        mustMatchValidator(new RegExp('^[a-z0-9_]{5,12}$'))
+        mustMatchValidator(new RegExp('^[a-z0-9_]{4,12}$'))
       ]
     );
     const passwordConfirmCtrl = new FormControl('el585');

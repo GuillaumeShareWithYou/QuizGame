@@ -12,6 +12,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {GameComponent} from './game/game.component';
 import {ProfileComponent} from './user/profile/profile.component';
 import {HttpClientModule} from '@angular/common/http';
+import { QuestionComponent } from './question/question.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,9 @@ import {HttpClientModule} from '@angular/common/http';
     PageNotFoundComponent,
     GameComponent,
     ProfileComponent,
+    QuestionComponent,
   ],
+  entryComponents: [QuestionComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -18,8 +18,8 @@ export function mustMatchValidator(nameRe: RegExp): ValidatorFn {
 export function identicalPasswordValidator(form: AbstractControl): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } => {
 
-    let passwordCtrl = form.get('password')
-    let passwordConfirmCtrl = form.get('passwordConfirm')
+    const passwordCtrl = form.get('password')
+    const passwordConfirmCtrl = form.get('passwordConfirm')
 
     if(passwordCtrl.value !== passwordConfirmCtrl.value){
       passwordConfirmCtrl.setErrors({MatchPassword: false});

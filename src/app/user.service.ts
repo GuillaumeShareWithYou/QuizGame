@@ -25,7 +25,7 @@ export class UserService {
     const body = new HttpParams()
       .set('email', email)
       .set('password', password);
-     return this.http.post<User>(`${environment.USERS_URL}/login`, body, httpOptions);
+     return this.http.post<User>(`${environment.API_USERS}/session/login`, body, httpOptions);
   }
 
   register(user: User) {
@@ -34,11 +34,11 @@ export class UserService {
       params = params.append(key, user[key])
     });
 
-    return this.http.post<User>(`${environment.USERS_URL}/register`, params , httpOptions)
+    return this.http.post<User>(`${environment.API_USERS}/session/register`, params , httpOptions)
   }
 
   findAll(){
-    return this.http.get<User[]>(`${environment.USERS_URL}/users`);
+    return this.http.get<User[]>(`${environment.API_USERS}/users`);
   }
 
 /*
@@ -65,6 +65,6 @@ export class UserService {
 
     let params = new HttpParams().set('username','toto');
     console.log(params.toString())
-    this.http.put(`${environment.USERS_URL}/user/48`, params.toString(), httpOptions).subscribe(r=>console.log(r))
+    this.http.put(`${environment.API_USERS}/user/48`, params.toString(), httpOptions).subscribe(r=>console.log(r))
   }
 }

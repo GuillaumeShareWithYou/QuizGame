@@ -28,7 +28,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {path: 'play',
-    canActivate: [AuthGuard],
+  //  canActivate: [AuthGuard],
     component: GameComponent
   },
   { path: '**',

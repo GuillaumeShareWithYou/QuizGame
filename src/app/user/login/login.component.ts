@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     this.userService.login(form.get('email').value, form.get('password').value)
       .subscribe(u => {
           this.userService.user = u;
-          this.router.navigate(['', 'play']);
+          this.router.navigate(['play']);
         },
         error => {
           console.log('erreur retournée', error);
