@@ -1,0 +1,16 @@
+<div class="row answerContainer">
+  <div class="col-md-12">
+    <h1 class="text-center text-info">{{question.category}}</h1>
+  </div>
+ <div class="col-md-12">
+   <h2 class="text-center">{{question.question}}</h2>
+ </div>
+  <div *ngFor="let answer of answers" class="col-md-6 p-4">
+    <div (click)="onAnswer($event)" class="answer p-2">
+      {{answer}}
+    </div>
+  </div>
+  <div class="col-md-12">
+    Question {{quiz.nthQuestion}} / {{quiz.numberOfQuestions}}
+  </div>
+</div>

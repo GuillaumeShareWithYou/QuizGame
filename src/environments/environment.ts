@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   API_USERS: 'http://localhost:8080',
-  API_GAME: 'https://opentdb.com/api_config.php'
+  API_QUESTIONS: 'https://opentdb.com/api.php',
+  API_CATEGORIES: 'https://opentdb.com/api_category.php'
 };
 
 /*

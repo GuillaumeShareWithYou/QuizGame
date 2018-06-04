@@ -1,0 +1,19 @@
+<game-menu *ngIf="quiz.gameState === QuizState.MENU"></game-menu>
+
+<div *ngIf="quiz.gameState === QuizState.PLAYING" class="row">
+  <div class="col-md-2">
+    <p>Score: {{quiz.score}}</p>
+    <p>Temps: {{quiz.timer | date:'mm:ss'}}</p>
+  </div>
+  <div class="col-md-10">
+    <ng-container id="questionContainer" #questionContainer></ng-container>
+  </div>
+</div>
+
+<div *ngIf="quiz.gameState === QuizState.END" #endgame>
+  <h1 class="text-center">Partie terminée</h1>
+  <div class="text-center">
+    Score: {{quiz.score}}, Temps: {{quiz.timer| date:'mm:ss'}}<br><button (click)="replay()">Rejouer</button>
+  </div>
+</div>
+ngngn

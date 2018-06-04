@@ -1,0 +1,29 @@
+.categoryGroup input{
+  display: none;
+}
+.categoryGroup input:checked+label{
+  background: linear-gradient(0.25turn, #47ff11, #0b6807);
+}
+.categoryGroup label{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  padding: 11px 20px;
+
+  width: 100%;
+  min-height: 70px;
+  text-transform: uppercase;
+  color: #fff;
+
+  background: hsla(0,0%,9%,.7);
+  border-radius: 500px;
+  box-shadow: inset 0 0 0 2px #a0a0a0;
+
+  transition: 2s;
+  cursor: pointer;
+
+}
+.btn-play{
+  width: 100%;
+}

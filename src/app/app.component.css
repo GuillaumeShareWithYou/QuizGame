@@ -1,7 +1,11 @@
 .cover {
   position: fixed;
-  top: 0; right: 0; left: 0; bottom: 0;
-  background-color: #fff9ea;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: black;
+
   z-index: -1;
 }
 .container{

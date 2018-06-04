@@ -1,12 +1,12 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './user/login/login.component';
 import {RegisterComponent} from './user/register/register.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {AuthGuard} from './auth.guard';
-import {GameComponent} from './game/game.component';
 import {ProfileComponent} from './user/profile/profile.component';
+import {QuizComponent} from './games/quiz/quiz/quiz.component';
 
 const routes: Routes = [
   {
@@ -29,7 +29,7 @@ const routes: Routes = [
   },
   {path: 'play',
   //  canActivate: [AuthGuard],
-    component: GameComponent
+    component: QuizComponent
   },
   { path: '**',
     component: PageNotFoundComponent

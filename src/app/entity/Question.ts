@@ -14,10 +14,14 @@ export class Question{
    * return all the possible answers for a question, shuffled randomly.
    * @returns {string[]}
    */
-  getAnswers(){
+  public getAnswers(){
     let answers = this.incorrect_answers.slice();
     answers.push(this.correct_answer);
     return answers.sort((a, b) => Math.random() > .5 ? -1 : 1);
+  }
+
+  static fakeAnswer(){
+    return ['A', 'B', 'C', 'D'];
   }
 
   get category(): string {

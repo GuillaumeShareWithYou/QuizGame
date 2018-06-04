@@ -9,10 +9,12 @@ import {LoginComponent} from './user/login/login.component';
 import {RegisterComponent} from './user/register/register.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {GameComponent} from './game/game.component';
 import {ProfileComponent} from './user/profile/profile.component';
 import {HttpClientModule} from '@angular/common/http';
-import { QuestionComponent } from './question/question.component';
+import { QuestionComponent } from './games/quiz/question/question.component';
+import { GameMenuComponent } from './games/quiz/game-menu/game-menu.component';
+import { QuizComponent } from './games/quiz/quiz/quiz.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,13 +24,15 @@ import { QuestionComponent } from './question/question.component';
     LoginComponent,
     RegisterComponent,
     PageNotFoundComponent,
-    GameComponent,
     ProfileComponent,
     QuestionComponent,
+    GameMenuComponent,
+    QuizComponent,
   ],
   entryComponents: [QuestionComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,

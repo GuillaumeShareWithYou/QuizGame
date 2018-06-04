@@ -1,0 +1,45 @@
+<div class="row p-4">
+  <div class="col-md-12">
+    <form [formGroup]="quizForm"  (ngSubmit)="onSubmit(form)">
+
+      <div style="height: 700px" class="row">
+
+        <div [@category] *ngFor="let category of categories" class="categoryGroup text-center col-lg-4 col-md-6">
+          <input ngModel [checked]="quiz.category == category.id" type="radio" name="category" id="{{category.id}}"
+                 [value]="category.id">
+          <label for="{{category.id}}">{{category.name}}</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="difficulty">Difficulté</label>
+          <select
+            #difficulty
+            [ngModel]
+            name="difficulty"
+            id="difficulty"
+            class="form-control">
+            <option value="">Toutes</option>
+            <option [selected]="quiz.difficulty === 'easy'" value="easy">Facile</option>
+            <option [selected]="quiz.difficulty === 'medium'" value="medium">Moyenne</option>
+            <option [selected]="quiz.difficulty === 'hard'" value="hard">Difficile</option>
+          </select>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="numberQuestions">Nombre de questions</label>
+          <input
+            #number
+            name="number"
+            ngModel
+            id="numberQuestions"
+            type="number"
+            value="1"
+            class="form-control">
+        </div>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary btn-play">Jouer</button>
+      </div>
+    </form>
+  </div>
+</div>
