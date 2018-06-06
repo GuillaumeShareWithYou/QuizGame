@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-md-8 offset-md-2">
+    <div class="text-center">
+      <span class="operand">{{equation.operandLeft}}</span>
+      <span class="operator" [innerHtml]="equation | operator"></span>
+      <span class="operand">{{equation.operandRight}} =</span>
+
+    </div>
+    <div class="form">
+      <input id="result" (keydown)="verifyKey($event)" [(ngModel)]="response" type="text" class=" inputResponse">
+      <button class="btn-wow" (click)="onResponse()">Valider</button>
+    </div>
+  </div>
+
+</div>
+
+<p>{{equation.result}}</p>

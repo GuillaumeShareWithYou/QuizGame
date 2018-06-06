@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GameMenuComponent } from './game-menu.component';
+import { CalculNotificationComponent } from './calcul-notification.component';
 
-describe('GameMenuComponent', () => {
-  let component: GameMenuComponent;
-  let fixture: ComponentFixture<GameMenuComponent>;
+describe('CalculNotificationComponent', () => {
+  let component: CalculNotificationComponent;
+  let fixture: ComponentFixture<CalculNotificationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GameMenuComponent ]
+      declarations: [ CalculNotificationComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GameMenuComponent);
+    fixture = TestBed.createComponent(CalculNotificationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

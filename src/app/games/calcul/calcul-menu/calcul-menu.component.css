@@ -1,0 +1,10 @@
+.menuContainer{
+  width: 50%;
+  margin: 10% auto;
+  display: flex;
+  flex-direction: column;
+}
+.menuButton{
+  display: block;
+  margin-bottom: 20px;
+}

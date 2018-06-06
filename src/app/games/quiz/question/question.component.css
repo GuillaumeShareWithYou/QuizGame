@@ -1,10 +1,25 @@
 .answer{
-  text-align: center;
-  background-color: #88816f;
-  color: white;
-  cursor: pointer;
+min-height: 125px;
 }
 .answerContainer{
   font-family: 'Indie Flower', cursive;
 
+}
+.question{
+ min-height: 90px;
+}
+.correctAnswer{
+  color: green;
+  background-color: transparent;
+  border: 1px solid green;
+}
+.incorrectAnswer{
+  color: red;
+  background-color: transparent;
+  border: 1px solid red;
+}
+.pendingAnswer{
+  color: #f5d00e;
+  background-color: transparent;
+  border: 1px solid #f5d00e;
 }

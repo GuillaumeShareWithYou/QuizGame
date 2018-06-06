@@ -1,12 +1,15 @@
-<div class="row answerContainer">
+<div [@question] class="row answerContainer">
   <div class="col-md-12">
-    <h1 class="text-center text-info">{{question.category}}</h1>
+    <h1 class="text-center text-info">
+      <span [innerHtml]="question.difficulty | stars"></span>
+      {{question.category}}
+    </h1>
   </div>
- <div class="col-md-12">
+ <div class="col-md-12 question">
    <h2 class="text-center">{{question.question}}</h2>
  </div>
-  <div *ngFor="let answer of answers" class="col-md-6 p-4">
-    <div (click)="onAnswer($event)" class="answer p-2">
+  <div *ngFor="let answer of answers;let i = index" class="col-md-6 p-4 answer">
+    <div (click)="onAnswer($event)" [id]="'answer-'+i" class="btn-wow p-3 text-center">
       {{answer}}
     </div>
   </div>
@@ -14,3 +17,4 @@
     Question {{quiz.nthQuestion}} / {{quiz.numberOfQuestions}}
   </div>
 </div>
+

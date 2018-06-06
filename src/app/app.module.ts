@@ -12,9 +12,18 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ProfileComponent} from './user/profile/profile.component';
 import {HttpClientModule} from '@angular/common/http';
 import { QuestionComponent } from './games/quiz/question/question.component';
-import { GameMenuComponent } from './games/quiz/game-menu/game-menu.component';
-import { QuizComponent } from './games/quiz/quiz/quiz.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {QuizGameComponent} from './games/quiz/quiz-game/quiz-game.component';
+import {QuizMenuComponent} from './games/quiz/quiz-menu/quiz-menu.component';
+import { GameDashboardComponent } from './game-dashboard/game-dashboard.component';
+import {StarsPipe} from './pipes/pipes';
+import { CalculMenuComponent } from './games/calcul/calcul-menu/calcul-menu.component';
+import { CalculGameComponent } from './games/calcul/calcul-game/calcul-game.component';
+import {EquationPipe} from './games/calcul/equationPipe';
+import { CalculControllerComponent } from './games/calcul/calcul-controller/calcul-controller.component';
+import { CalculNotificationComponent } from './games/calcul/calcul-notification/calcul-notification.component';
+
+
 
 @NgModule({
   declarations: [
@@ -26,17 +35,24 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     PageNotFoundComponent,
     ProfileComponent,
     QuestionComponent,
-    GameMenuComponent,
-    QuizComponent,
+    QuizMenuComponent,
+    QuizGameComponent,
+    GameDashboardComponent,
+    StarsPipe,
+    EquationPipe,
+    CalculMenuComponent,
+    CalculGameComponent,
+    CalculControllerComponent,
+    CalculNotificationComponent
   ],
-  entryComponents: [QuestionComponent],
+  entryComponents: [QuestionComponent, CalculNotificationComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

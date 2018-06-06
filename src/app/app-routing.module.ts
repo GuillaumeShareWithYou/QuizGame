@@ -4,16 +4,15 @@ import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './user/login/login.component';
 import {RegisterComponent} from './user/register/register.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
-import {AuthGuard} from './auth.guard';
+import {AuthGuard} from './guards/auth.guard';
 import {ProfileComponent} from './user/profile/profile.component';
-import {QuizComponent} from './games/quiz/quiz/quiz.component';
+import {QuizGameComponent} from './games/quiz/quiz-game/quiz-game.component';
+import {GameDashboardComponent} from './game-dashboard/game-dashboard.component';
+import {CalculGameComponent} from './games/calcul/calcul-game/calcul-game.component';
+import {CalculControllerComponent} from './games/calcul/calcul-controller/calcul-controller.component';
+
 
 const routes: Routes = [
-  {
-    path: '',
-    component: HomeComponent,
-    pathMatch: 'full'
-  },
   {
     path: 'login',
     component: LoginComponent
@@ -27,9 +26,22 @@ const routes: Routes = [
     component: ProfileComponent,
     canActivate: [AuthGuard]
   },
-  {path: 'play',
+  {
+    path: '',
+    component: HomeComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'games',
+    component: GameDashboardComponent
+  },
+  {path: 'quiz',
   //  canActivate: [AuthGuard],
-    component: QuizComponent
+    component: QuizGameComponent
+  },
+  {
+    path: 'calcul',
+    component: CalculControllerComponent
   },
   { path: '**',
     component: PageNotFoundComponent

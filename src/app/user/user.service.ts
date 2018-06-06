@@ -1,13 +1,14 @@
 import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import {User} from './entity/User';
-import {environment} from '../environments/environment';
+import {User} from '../entity/User';
+import {environment} from '../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
   //  'Content-Type': 'application/json'
-    'Content-Type': 'application/x-www-form-urlencoded'
+    'Content-Type': 'application/x-www-form-urlencoded',
+
   })
 };
 @Injectable({

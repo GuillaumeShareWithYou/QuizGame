@@ -1,10 +1,10 @@
 import {EventEmitter, Injectable} from '@angular/core';
-import {Question} from './entity/Question';
+import {Question} from '../../entity/Question';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {delay, map} from 'rxjs/operators';
-import {environment} from '../environments/environment';
+import {environment} from '../../../environments/environment';
 import {BehaviorSubject, of, Observable, from} from 'rxjs';
-import {Category} from './entity/Category';
+import {Category} from '../../entity/Category';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +23,7 @@ export class QuizService {
   private timerInterval;
   private _gameState: QuizState;
   private _isReady = new BehaviorSubject<boolean>(false);
-
+  private _scoreChangedEmitter = new EventEmitter<number>();
   constructor(private http: HttpClient) {
     this.initGame();
   }
@@ -35,7 +35,19 @@ export class QuizService {
     let sub = this.fetchQuestions();
     this._gameState = QuizState.PLAYING;
     sub.subscribe(e => {
-        this.questions.next(e);
+        let temp = [];
+        e.forEach(question=>{
+          let q = new Question();
+          q.question = unescape(question.question);
+          q.category = unescape(question.category);
+          q.correct_answer = unescape(question.correct_answer);
+          q.incorrect_answers = [];
+          question.incorrect_answers.forEach(answer => q.incorrect_answers.push(unescape(answer)));
+          q.type = question.type;
+          q.difficulty = question.difficulty;
+          temp.push(q);
+        });
+        this.questions.next(temp);
         this._numberOfQuestions = e.length;
       },
       error => console.log(error),
@@ -55,10 +67,12 @@ export class QuizService {
     this._nthQuestion = 0;
   }
 
-  checkoutAnswer(userResponse: string) {
-    if (userResponse === unescape(this._currentQuestion.correct_answer)) {
-      ++this._score;
-    }
+
+  countCorrectAnswer(difficulty) {
+
+    let delta = difficulty === 'medium' ? 5 : difficulty === 'hard' ? 10 : 1;
+    this.score += delta;
+    this.scoreChangedEmitter.emit(delta);
   }
 
   fetchQuestions(): Observable<Question[]> {
@@ -66,7 +80,7 @@ export class QuizService {
     let params = new HttpParams()
       .append('category', this._category)
       .append('amount', this._numberOfQuestions.toString())
-      .append('_difficulty', this._difficulty)
+      .append('difficulty', this._difficulty)
       .append('encode', this._encode);
     console.log(params.toString());
     return this.http.get(`${environment.API_QUESTIONS + '?' + params.toString()}`)
@@ -74,7 +88,8 @@ export class QuizService {
   }
 
   fetchAllCategories(): Observable<Category[]> {
-    return this.http.get(`${environment.API_CATEGORIES}`).pipe(map(e => e['trivia_categories']));
+    return this.http.get(`${environment.API_CATEGORIES}`)
+      .pipe(map(e => e['trivia_categories']));
   }
 
   public getNextQuestion(): Question {
@@ -179,6 +194,14 @@ export class QuizService {
 
   set isReady(value: BehaviorSubject<boolean>) {
     this._isReady = value;
+  }
+
+  get scoreChangedEmitter(): EventEmitter<number> {
+    return this._scoreChangedEmitter;
+  }
+
+  set scoreChangedEmitter(value: EventEmitter<number>) {
+    this._scoreChangedEmitter = value;
   }
 }
 

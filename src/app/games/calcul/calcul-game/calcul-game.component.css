@@ -1,0 +1,29 @@
+.operand {
+  font-size: 5em;
+  margin: 0 10px;
+}
+
+.operator {
+  font-size: 3em;
+}
+
+.inputResponse {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px blue solid;
+  display: block;
+  padding: 5px;
+  color: white;
+  margin: 20px 0;
+  width: 100%;
+}
+
+.inputResponse:focus {
+  outline-style:none;
+  box-shadow:none;
+  border-color:transparent;
+}
+.form{
+  width: 200px;
+  margin: auto;
+}

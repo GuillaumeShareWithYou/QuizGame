@@ -1,0 +1,54 @@
+<div class="row p-4">
+  <div class="col-md-12">
+    <form [formGroup]="quizForm" (ngSubmit)="onSubmit()">
+
+      <div style="min-height: 700px" class="row">
+
+        <div [@category] *ngFor="let category of categories" class="categoryGroup text-center col-lg-4 col-md-6">
+          <input formControlName="category"
+                 [checked]="quiz.category == category.id"
+                 type="radio"
+                 #cat
+                 (click)="toggleChecked($event)"
+                 name="category"
+                 id="{{category.id}}"
+                 [value]="category.id">
+          <label for="{{category.id}}">{{category.name}}</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="difficulty">Difficulté</label>
+          <select
+           formControlName="difficulty"
+            name="difficulty"
+            id="difficulty"
+            class="form-control">
+            <option
+                  *ngFor="let d of difficulties"
+                    [selected]="quiz.difficulty === d.value"
+                    [ngValue]="d.value">
+              {{d.name}}
+            </option>
+          </select>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="numberQuestions">Nombre de questions</label>
+          <input
+            formControlName="numberQuestions"
+            name="number"
+            id="numberQuestions"
+            type="number"
+            required
+            class="form-control"
+            placeholder="max: 30">
+        </div>
+      </div>
+      <div class="text-center mt-3">
+        <button [disabled]="!quizForm.valid" type="submit" class="btn btn-wow">Jouer</button>
+      </div>
+    </form>
+    {{quizForm.value | json}}
+
+  </div>
+</div>

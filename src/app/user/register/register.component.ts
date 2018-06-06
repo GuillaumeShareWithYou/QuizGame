@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from '../../user.service';
+import {UserService} from '../user.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { identicalPasswordValidator, mustMatchValidator, mustNotMatchValidator} from '../../validator/validators';
 import {Router, NavigationExtras, ActivatedRoute} from '@angular/router';
@@ -17,17 +17,17 @@ export class RegisterComponent implements OnInit {
               private userService: UserService) {}
 
   ngOnInit() {
-    const passwordCtrl = new FormControl('el585',
+    const passwordCtrl = new FormControl('',
       [
         Validators.required,
         mustMatchValidator(new RegExp('^[a-z0-9_]{4,12}$'))
       ]
     );
-    const passwordConfirmCtrl = new FormControl('el585');
+    const passwordConfirmCtrl = new FormControl('');
 
 
     this.registerForm = this.fb.group({
-      'username': ['PogChamp',
+      'username': ['',
         [
           Validators.required,
           Validators.minLength(3),
@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
           mustNotMatchValidator(new RegExp('^.*@.*$'))
         ]
       ],
-      'email': ['pog@twitch.fr',
+      'email': ['',
         [
           Validators.required,
           Validators.email
@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
       ],
       'password': passwordCtrl,
       'passwordConfirm': passwordConfirmCtrl,
-      'birthDate' : ['2001-05-06', [Validators.required]]
+      'birthDate' : ['', [Validators.required]]
     })
     this.registerForm.setValidators(identicalPasswordValidator(this.registerForm))
   }

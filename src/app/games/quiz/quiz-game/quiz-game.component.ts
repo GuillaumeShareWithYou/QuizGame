@@ -1,17 +1,16 @@
 import {Component, ComponentFactoryResolver, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild, ViewContainerRef} from '@angular/core';
 import {Router} from '@angular/router';
-import {QuizService, QuizState} from '../../../quiz.service';
+import {QuizService, QuizState} from '../quiz.service';
 import {Question} from '../../../entity/Question';
-import {BehaviorSubject, Subscription} from 'rxjs';
+import {Subscription} from 'rxjs';
 import {QuestionComponent} from '../question/question.component';
-import {createComponent} from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-quiz',
-  templateUrl: './quiz.component.html',
-  styleUrls: ['./quiz.component.css']
+  templateUrl: './quiz-game.component.html',
+  styleUrls: ['./quiz-game.component.css']
 })
-export class QuizComponent implements OnInit, OnDestroy {
+export class QuizGameComponent implements OnInit, OnDestroy {
 
   @ViewChild('questionContainer', {read: ViewContainerRef}) container: ViewContainerRef;
 
@@ -26,6 +25,14 @@ export class QuizComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
+    this.quiz.scoreChangedEmitter.subscribe(value=>{
+      let span = document.getElementById('addToScore')
+      span.innerText = '+ '+ value;
+      span.style.display = 'inline-block'
+      setTimeout(()=>{
+        span.style.display = 'none'
+      },500)
+    })
     //Le jeu est deja lancé, on reste sur la même question
     if (this.quiz.gameState === QuizState.PLAYING) {
       this.createQuestionComponent(this.quiz.getCurrentQuestion());
@@ -90,4 +97,7 @@ export class QuizComponent implements OnInit, OnDestroy {
       this.isReadySub.unsubscribe();
     }
   }
+
+
+
 }

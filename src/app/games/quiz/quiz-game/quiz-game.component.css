@@ -1,0 +1,16 @@
+.addScore{
+  color: green;
+  display: none;
+  position: absolute;
+  right: -15px;
+  top: -10px;
+}
+.gameInfo{
+  font-size: 2em;
+}
+.score{
+  position: relative;
+}
+.btn{
+  margin-right: 25px;
+}
