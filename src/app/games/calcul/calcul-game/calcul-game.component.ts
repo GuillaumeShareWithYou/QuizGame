@@ -12,7 +12,6 @@ export class CalculGameComponent implements OnInit {
 
   private _equation: Equation;
   private _response: string;
-  private _alreadyAnswered = false;
 
   constructor(public game: CalculService) {
   }
@@ -26,15 +25,18 @@ export class CalculGameComponent implements OnInit {
   }
 
   getReadyNextQuestion() {
-    this._alreadyAnswered = false;
     document.getElementById('result').focus();
   }
 
+  /**
+   * Prend en charge l'évenement de réponse de l'utilisateur
+   */
   onResponse() {
-    if (this.alreadyAnswered || this._response.trim().length == 0)
+
+    if (this._response.trim().length === 0){
       return;
-    this.game.verifyAnswer(this._response);
-    this._alreadyAnswered = true;
+    }
+    this.game.verifyAnswer(parseInt(this._response, 10));
     this._response = '';
   }
 
@@ -48,8 +50,14 @@ export class CalculGameComponent implements OnInit {
     }
   }
 
+
+  /**
+   * Vérifie si la touche est valide
+   * @param n
+   * @returns {boolean}
+   */
   isValid(n) {
-    return n.match(/^[0-9\-]$/) != null;
+    return n === 'Backspace' || n.match(/^[0-9\-]$/) != null;
   }
 
 
@@ -69,11 +77,4 @@ export class CalculGameComponent implements OnInit {
     this._response = value;
   }
 
-  get alreadyAnswered(): boolean {
-    return this._alreadyAnswered;
-  }
-
-  set alreadyAnswered(value: boolean) {
-    this._alreadyAnswered = value;
-  }
 }

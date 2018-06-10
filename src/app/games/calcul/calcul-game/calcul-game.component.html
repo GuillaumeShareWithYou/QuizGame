@@ -7,11 +7,18 @@
 
     </div>
     <div class="form">
-      <input id="result" (keydown)="verifyKey($event)" [(ngModel)]="response" type="text" class=" inputResponse">
+      <div class="floating-placeholder">
+        <input id="result" (keydown)="verifyKey($event)" [(ngModel)]="response" type="text" class=" inputResponse">
+        <label class="labelResponse" for="result">Votre réponse</label>
+      </div>
       <button class="btn-wow" (click)="onResponse()">Valider</button>
     </div>
   </div>
 
 </div>
-
+<div class="ropeContainer">
+  <div class="rope"
+       [style.backgroundColor]="(game.gameTimer / game.TIMER_MAX)*100 > 33 ? '#5a602a' : 'red'"
+       [style.width]="(game.gameTimer / game.TIMER_MAX)*100+ '%'" ></div>
+</div>
 <p>{{equation.result}}</p>

@@ -1,10 +1,10 @@
 #notification {
   padding: 20px;
   width: 33%;
-  background-color: white;
-  color: blue;
   font-family: monospace;
   position: fixed;
-  bottom: 0;
+  bottom: 30%;
+  z-index: 150;
   left: 33%;
+  min-height: 60px;
 }

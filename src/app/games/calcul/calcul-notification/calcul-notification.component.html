@@ -1,3 +1,4 @@
-<div [@notif] id="notification" *ngIf="notification.length > 0">
-  {{notification}}
+<div [class]="'text-center alert alert-'+notification.alertDegree"
+     [@notif] id="notification" *ngIf="notification">
+  {{notification.message}}
 </div>

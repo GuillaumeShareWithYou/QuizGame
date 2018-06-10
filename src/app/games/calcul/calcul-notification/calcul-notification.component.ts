@@ -1,7 +1,9 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
+import {Component, Input, OnInit} from '@angular/core';
 import {CalculService} from '../calcul.service';
 import {animate, style, transition, trigger} from '@angular/animations';
+import {Notification} from '../notification';
+
+const lifeTimeNotification = 1500;
 
 @Component({
   selector: 'app-calcul-notification',
@@ -10,19 +12,38 @@ import {animate, style, transition, trigger} from '@angular/animations';
   animations: [
     trigger('notif', [
       transition('void => *', [
-        style({opacity: 0}),
-        animate('2s ease-in')
+        style({transform: 'translateY(+50%)'}),
+        animate('.5s ease-in')
+      ]),
+      transition(':leave', [
+        animate('.5s ease-in', style({opacity: 0}))
       ]),
     ])
   ]
 })
 export class CalculNotificationComponent implements OnInit {
 
-  @Input() notification = '';
+  notification: Notification = null;
 
-  constructor(public game: CalculService) { }
+  private clearListener;
+
+  constructor(public game: CalculService) {
+  }
 
   ngOnInit() {
+    this.game.notification.subscribe(n => {
+      if (!this.game.isRunning) {
+        return;
+      }
+      this.notification = n;
+      if (this.clearListener) {
+        clearTimeout(this.clearListener);
+      }
+      this.clearListener = setTimeout(() => {
+        this.notification = null
+          console.log('notif disparait!');
+      }, lifeTimeNotification);
+    });
 
   }
 
